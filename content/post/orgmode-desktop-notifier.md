@@ -2,13 +2,13 @@
 title = "Setup Desktop Notifier For Org-Mode"
 date = 2018-01-10
 tags = ["emacs"]
-categories = ["Efficiency"]
+categories = ["效率"]
 draft = false
 +++
 
 介绍如何为Emacs中特别是Orgmode中的定时任务建立桌面提醒。
-
 <!--more-->
+
 
 ## 背景介绍 {#背景介绍}
 
