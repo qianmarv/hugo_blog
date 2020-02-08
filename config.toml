@@ -59,12 +59,12 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
   since = "2015"            # Site creation time          # 站点建立时间
   # use public git repo url to link lastmod git commit, enableGitInfo should be true.
   # 指定 git 仓库地址，可以生成指向最近更新的 git commit 的链接，需要将 enableGitInfo 设置成 true.
-  gitRepo = "git@github.com:qianmarv/hugo_blog.git"
+  gitRepo = "https://github.com/qianmarv/hugo_blog.git"
 
   # site info (optional)                                  # 站点信息（可选，不需要的可以直接注释掉）
-  #logoTitle = "Even"        # default: the title value    # 默认值: 上面设置的title值
-  #keywords = ["Hugo", "theme","even"]
-  #description = "Hugo theme even example site."
+  logoTitle = "马文的博客"        # default: the title value    # 默认值: 上面设置的title值
+  keywords = ["programming", "SAP"]
+  description = "马文的个人博客"
 
   # paginate of archives, tags and categories             # 归档、标签、分类每页显示的文章数目，建议修改为一个较大的值
   archivePaginate = 20
@@ -102,7 +102,7 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
 
   livereUID = ""            # LiveRe UID                  # 来必力
 
-  baiduPush = false        # baidu push                  # 百度
+  baiduPush = true         # baidu push                  # 百度
   baiduAnalytics = ""      # Baidu Analytics
   baiduVerification = ""   # Baidu Verification
   googleVerification = ""  # Google Verification         # 谷歌
@@ -140,8 +140,10 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
     clientSecret = ""       # Your client secret
 
   [params.utterances]       # https://utteranc.es/
+    enable = true
     owner = "qianmarv"              # Your GitHub ID
-    repo = "hugo_blog"               # The repo to store comments
+    repo = "qianmarv/qianmarv.github.io"               # The repo to store comments
+    theme = "github-light"
 
   [params.gitalk]           # Gitalk is a comment system based on GitHub issues. see https://github.com/gitalk/gitalk
     owner = ""              # Your GitHub ID
@@ -171,7 +173,7 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
     options = ""            # default: "{theme: 'simple'}"
 
   [params.busuanzi]         # count web traffic by busuanzi                             # 是否使用不蒜子统计站点访问量
-    enable = false
+    enable = true
     siteUV = true
     sitePV = true
     pagePV = true
