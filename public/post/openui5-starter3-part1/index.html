@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>UI5入门系列之三：MVC （上） - 模型 - 知行合一</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="qianmarv" /><meta name="description" content="这次我们来一起学习MVC，这个专题分为两个小节，本次主要是总览以及模型，下一次着重会介绍视图以及控制器，因为控制器其实没有太多可以讲的，所以和视图合并在一块。
+" /><meta name="keywords" content="programming, SAP" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="http://blog.qianmarv.xyz/post/openui5-starter3-part1/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="UI5入门系列之三：MVC （上） - 模型" />
+<meta property="og:description" content="这次我们来一起学习MVC，这个专题分为两个小节，本次主要是总览以及模型，下一次着重会介绍视图以及控制器，因为控制器其实没有太多可以讲的，所以和视图合并在一块。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://blog.qianmarv.xyz/post/openui5-starter3-part1/" />
+<meta property="article:published_time" content="2015-09-04T00:00:00+08:00" />
+<meta property="article:modified_time" content="2015-09-04T00:00:00+08:00" />
+<meta itemprop="name" content="UI5入门系列之三：MVC （上） - 模型">
+<meta itemprop="description" content="这次我们来一起学习MVC，这个专题分为两个小节，本次主要是总览以及模型，下一次着重会介绍视图以及控制器，因为控制器其实没有太多可以讲的，所以和视图合并在一块。">
+<meta itemprop="datePublished" content="2015-09-04T00:00:00+08:00" />
+<meta itemprop="dateModified" content="2015-09-04T00:00:00+08:00" />
+<meta itemprop="wordCount" content="2597">
+
+
+
+<meta itemprop="keywords" content="SAPUI5," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="UI5入门系列之三：MVC （上） - 模型"/>
+<meta name="twitter:description" content="这次我们来一起学习MVC，这个专题分为两个小节，本次主要是总览以及模型，下一次着重会介绍视图以及控制器，因为控制器其实没有太多可以讲的，所以和视图合并在一块。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">马文的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">全部</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">马文的博客</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">全部</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">UI5入门系列之三：MVC （上） - 模型</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2015-09-04 </span>
+        <div class="post-category">
+            <a href="/categories/%E7%BC%96%E7%A8%8B/"> 编程 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#model-view-controller-mvc-的基本概念">Model View Controller （MVC）的基本概念</a></li>
+    <li><a href="#ui5中的模型概念">UI5中的模型概念</a>
+      <ul>
+        <li><a href="#绑定模式">绑定模式</a></li>
+        <li><a href="#绑定类型">绑定类型</a></li>
+      </ul>
+    </li>
+    <li><a href="#分析与总结">分析与总结</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>这次我们来一起学习MVC，这个专题分为两个小节，本次主要是总览以及模型，下一次着重会介绍视图以及控制器，因为控制器其实没有太多可以讲的，所以和视图合并在一块。</p>
+<h2 id="model-view-controller-mvc-的基本概念">Model View Controller （MVC）的基本概念</h2>
+<p>MVC，对于大多数人说，这是一个讲烂了的概念。不过，既然这是一个入门系列，还是要稍微讲一讲。</p>
+<ul>
+<li>M 代表Model - 模型 <!-- raw HTML omitted -->
+一般用来管理数据层，比如绑定后台数据。</li>
+<li>V 代表View - 视图 <!-- raw HTML omitted -->
+一般用来处理展示层，比如具体前端UI的展示。</li>
+<li>C 代表Controller - 控制器 <!-- raw HTML omitted -->
+一般用来处理逻辑，可是页面逻辑也可以是协调处理数据的逻辑</li>
+</ul>
+<p>不同的程序设计语言，只要涉及到有前端交互的，一般都会有MVC的概念，这个概念是相通的，但是具体
+到细节层面还是会有差别，所以下面的内容都是针对UI5的MVC而言。</p>
+<figure>
+    <img src="/ox-hugo/starter_3_1.png"/> 
+</figure>
+
+<p>MVC最主要的目的是把展示与逻辑、数据分离开来，使得程序更容易阅读、容易理解，从而也更可以维护，
+同时，也增加了可扩展性。</p>
+<p>视图和控制器一般是1:1对应的，但是也可以创建一个没有视图的控制器，这样的控制器叫做应用控制器， <code>Application Controller</code> ；同时，也可以创建一个没有控制器的视图。</p>
+<h2 id="ui5中的模型概念">UI5中的模型概念</h2>
+<p>前面讲到，模型的主要作用是提供数据，比如如何从后台数据库获取数据，如何更新后台数据等等。</p>
+<p>UI5提供了以下预定义的模型：</p>
+<ul>
+<li>
+<p>JSON 模型：<!-- raw HTML omitted -->
+属于客户端(client-side model)模型，所以比较适合小型数据集，JSON模型支持双向绑定。 <!-- raw HTML omitted -->
+类名：<a href="https://openui5.hana.ondemand.com/docs/api/symbols/sap.ui.model.json.JSONModel.html">sap.ui.model.json.JSONModel</a></p>
+</li>
+<li>
+<p>XML模型： <!-- raw HTML omitted -->
+同样属于客户端模型。<!-- raw HTML omitted -->
+类名：<a href="https://openui5.hana.ondemand.com/#docs/api/symbols/sap.ui.model.xml.XMLModel.html">sap.ui.model.xml.XMLModel</a></p>
+</li>
+<li>
+<p>Resource模型： <!-- raw HTML omitted -->
+这个比较特殊，它是通过资源包(Resource Bundle)的方式来处理数据，一般我们可以用它来做多语言处理。 <!-- raw HTML omitted -->
+类名：<a href="https://openui5.hana.ondemand.com/#docs/api/symbols/sap.ui.model.resource.ResourceModel.html">sap.ui.model.resource.ResourceModel</a></p>
+</li>
+<li>
+<p>OData模型： <!-- raw HTML omitted -->
+属于服务端模型(server-side model)，所以必须提供服务端OData的资源URL来绑定到对应的UI5控件。 <!-- raw HTML omitted -->
+类名：<a href="https://openui5.hana.ondemand.com/#docs/api/symbols/sap.ui.model.odata.ODataModel.html">sap.ui.model.odata.ODataModel</a></p>
+</li>
+</ul>
+<h3 id="绑定模式">绑定模式</h3>
+<p>这里有一个绑定模式(Binding Model)的概念，绑定模式定了数据资源是如何被绑定的，UI5里面绑定模式有三种：</p>
+<ul>
+<li>One Way: 从模型到视图的单向绑定。
+我们可以简单的认为单向绑定是一种只读的绑定，如果视图里面的某个字段的值变更了，不会对模型造成影响。如果想要更新数据，就必须要通过控制器来手动控制更新数据到模型，然后这个模型所绑定到视图的所有字段都会自动更新一次。 <!-- raw HTML omitted -->
+<code>View(UI: input box value)</code> &ndash;manually update&ndash;&gt; <code>Model</code> &ndash;automatically&ndash;&gt; <code>View</code> <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></li>
+</ul>
+<!-- raw HTML omitted -->
+<ul>
+<li>
+<p>Two Way: 从模型到视图和视图到模型的双向绑定，如果视图中的某个字段的值变更了，模型会自动更新，同时，这个模型所绑定到视图的其他控件数据。 <!-- raw HTML omitted -->
+<code>View(UI: input box value)</code> &ndash;automatically&ndash;&gt; <code>Model</code> &ndash;automatically&ndash;&gt; <code>View</code></p>
+</li>
+<li>
+<p>One Time: 一次性绑定，有些类似单向绑定，但是如果模型有变更的话，系统不会自动刷新数据，所以一般用来绑定静态文本。</p>
+</li>
+</ul>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>One-way</th>
+<th>Two-way</th>
+<th>One-time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Resource model</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>X</td>
+</tr>
+<tr>
+<td>JSON model</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>XML model</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>OData model</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+</tr>
+</tbody>
+</table>
+<h3 id="绑定类型">绑定类型</h3>
+<p>了解了绑定模式，我们再来看绑定类型(Binding Type)，简单的说绑定模式要处理的是怎么绑定的问题，绑定类型要处理的是绑定到哪的问题。
+UI5中提供了三种绑定类型。</p>
+<h4 id="property-binding">Property Binding</h4>
+<p>Property Binding允许控件的某些属性直接绑定到模型的数据从而可以自动初始化以及当后台数据变动时可以自动刷新。</p>
+<p>定义property Binding有两种方法：</p>
+<ul>
+<li>通过控件的构造器在 <code>seetings</code> 对象中绑定</li>
+<li>通过控件的 <code>bindProperty</code> 方法绑定</li>
+</ul>
+<p>一般最常见的方式就是直接利用构造器的settings对象来直接绑定模型，比如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript">     <span class="kd">var</span> <span class="nx">oTextField</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">commons</span><span class="p">.</span><span class="nx">TextField</span><span class="p">({</span>
+         <span class="nx">value</span><span class="o">:</span> <span class="s2">&#34;{/company/name}&#34;</span>
+     <span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>稍稍做一点说明，当有多个数据模型绑定到当前控件以及祖先控件时，需要用在绑定的字段之前加上模型名称，比如 &ldquo;{mymodel&gt;/company/name}&rdquo; 。 <!-- raw HTML omitted --></p>
+<p>如果需要对这个绑定做更多的定义，可以跟进一步，用以下的扩展语法格式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript">     <span class="kd">var</span> <span class="nx">oTextField</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">commons</span><span class="p">.</span><span class="nx">TextField</span><span class="p">({</span>
+     <span class="nx">value</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">path</span><span class="o">:</span> <span class="s2">&#34;/company/name&#34;</span><span class="p">,</span>
+		<span class="nx">mode</span><span class="o">:</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">BindingMode</span><span class="p">.</span><span class="nx">OneWay</span>
+	<span class="p">}</span>
+     <span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这里显式的把绑定的模型字段赋给 <code>path</code> ，注意这里就不需要套上大括号了。 <!-- raw HTML omitted --></p>
+<p>通过控件的 <code>bindProperty</code> 方法则提供了更多的选项，可以让用户在稍后而不是初始化的时候来绑定。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript">     <span class="nx">oTextField</span><span class="p">.</span><span class="nx">bindProperty</span><span class="p">(</span><span class="s2">&#34;value&#34;</span><span class="p">,</span> <span class="s2">&#34;/company/name&#34;</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>以及类似的</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript">     <span class="nx">oTextField</span><span class="p">.</span><span class="nx">bindProperty</span><span class="p">(</span><span class="s2">&#34;value&#34;</span><span class="p">,</span> <span class="p">{</span>
+	<span class="nx">path</span><span class="o">:</span> <span class="s2">&#34;value&#34;</span><span class="p">,</span>
+	<span class="nx">type</span><span class="o">:</span> <span class="k">new</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">type</span><span class="p">.</span><span class="nx">Integer</span><span class="p">()</span>
+     <span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>有一些控件做了进一步的封装，比如文本框，由于 <code>value</code> 是经常需要用来绑定模型的属性，所以直接提供了 <code>bindValue</code> 方法以方便使用。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript">     <span class="nx">oTextField</span><span class="p">.</span><span class="nx">bindValue</span><span class="p">(</span><span class="s2">&#34;/company/name&#34;</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>当需要对绑定的字段做更多的处理，而不是简单的一对一绑定时，UI5还提供了 <code>formatter</code> 这个属性方法，用法如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">oTextField</span><span class="p">.</span><span class="nx">bindProperty</span><span class="p">(</span><span class="s2">&#34;value&#34;</span><span class="p">,</span> <span class="s2">&#34;/company/title&#34;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">sValue</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">sValue</span> <span class="o">&amp;&amp;</span> <span class="nx">sValue</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">();</span>
+<span class="p">});</span>
+
+<span class="nx">oControl</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">commons</span><span class="p">.</span><span class="nx">TextField</span><span class="p">({</span>
+    <span class="nx">value</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">path</span><span class="o">:</span><span class="s2">&#34;/company/revenue&#34;</span><span class="p">,</span>
+        <span class="nx">formatter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">fValue</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">fValue</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="s2">&#34;&gt; &#34;</span> <span class="o">+</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">fValue</span><span class="o">/</span><span class="mi">1000000</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&#34;M&#34;</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="s2">&#34;0&#34;</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">})</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>例子中分别提供了用构造器的方法和用 <code>bindProperty</code> 的方法来对要绑定的字段做format的示例。</p>
+<h4 id="aggregation-binding">Aggregation Binding</h4>
+<p>Aggregation binding主要是用来绑定子控件，对应的模型数据的结构也必须符合一定的树状结构关系。</p>
+<p>同样，和Property Binding类似，可以通过控件构造器的 <code>settings</code> 对象或者是 <code>bindAggregation</code> 方法来绑定模型，
+但是有一点不同的是，Aggregation Binding需要指定所谓的 <code>template</code> ，这是因为Property Binding是一个数据条目绑定到一个控件的字段，属于一对一的绑定，而Aggregation Binding，则是一组数据绑定到一组控件，比如将多个销售订单绑定到一个表控件的多个item中，属于一个数组到另一个数组的绑定。
+这个所谓的 <code>template</code> 其实就是我们创建一个item，然后系统在render的时候会参照我们创建的这个item，拷贝多个相同的items并绑定对应的数据。可以想象成两个数组，一个是数据数组，一个是Item控件数组，数据已经确定了，但是系统不知道需要创建哪个Item来绑定数据，需要我们帮它创建一个，接下来，系统就会创建和数据数组相同数量的Item控件，并且绑定和数据数组相同索引的数据。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">oItemTemplate</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">ListItem</span><span class="p">({</span><span class="nx">text</span><span class="o">:</span><span class="s2">&#34;{name}&#34;</span><span class="p">});</span>
+<span class="kd">var</span> <span class="nx">oComboBox</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">commons</span><span class="p">.</span><span class="nx">ComboBox</span><span class="p">({</span>
+    <span class="nx">items</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">path</span><span class="o">:</span> <span class="s2">&#34;/company/contacts&#34;</span><span class="p">,</span>
+		<span class="nx">template</span><span class="o">:</span> <span class="nx">oItemTemplate</span>
+	<span class="p">}</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>或者通过方法调用来绑定：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">oComboBox</span><span class="p">.</span><span class="nx">bindAggregation</span><span class="p">(</span><span class="s2">&#34;items&#34;</span><span class="p">,</span> <span class="s2">&#34;/company/contacts&#34;</span><span class="p">,</span> <span class="k">new</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">ListItem</span><span class="p">({</span><span class="nx">text</span><span class="o">:</span><span class="s2">&#34;{name}&#34;</span><span class="p">}));</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="element-binding">Element Binding</h4>
+<p>Element Binding可以允许我们把模型数据的某个特定的对象绑定到一个控件上（不是控件的某个属性），从而我们可以在控件的 <code>property</code> 或者 <code>aggregation</code> 中直接使用绑定到这一级的模型的下级对象，换句话说，允许我们在绑定数据的时候使用相对路径的方式。</p>
+<p>譬如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">oControl</span><span class="p">.</span><span class="nx">bindElement</span><span class="p">(</span><span class="s2">&#34;/company&#34;</span><span class="p">);</span>
+<span class="nx">oControl</span><span class="p">.</span><span class="nx">bindProperty</span><span class="p">(</span><span class="s2">&#34;value&#34;</span><span class="p">,</span> <span class="s2">&#34;name&#34;</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Element Binding使用场景比较简单，这里就不多说了。</p>
+<h2 id="分析与总结">分析与总结</h2>
+<p>本次我们学习了UI5中的模型的概念、类型以及如何使用。
+作为一套前端UI库，SAP的重点其实还是在于企业级的数据交互与展示，所以数据模型以及数据绑定就显得尤为重要，后面希望有机会可以一起探讨后端模型的输出，比如Netweaver以及HANA中是如何提供这些数据模型的。</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>Refer to <a href="https://www.youtube.com/watch?v=vY5%5FifnvDa8">https://www.youtube.com/watch?v=vY5%5FifnvDa8</a> at 7:02. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">qianmarv</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2015-09-04
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/sapui5/">SAPUI5</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/openui5-starter3-part2/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">UI5入门系列之三：MVC （下） - 视图与控制器</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/openui5-starter2-part2/">
+            <span class="next-text nav-default">UI5入门系列之二： 最佳实践练习（下）</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="qianmarv/qianmarv/qianmarv.github.io"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:qianmarv@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://www.linkedin.com/in/marvin-qian-11404017" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="https://github.com/qianmarv" class="iconfont icon-github" title="github"></a>
+  <a href="http://blog.qianmarv.xyz/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2015 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>qianmarv</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+<script id="baidu_push">
+  (function(){
+    if (window.location.hostname === 'localhost') return;
+    var bp = document.createElement('script'); bp.async = true;
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+
+
+</body>
+</html>

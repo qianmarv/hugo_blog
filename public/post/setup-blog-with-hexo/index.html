@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>通过 Hexo &#43; Git Page 搭建静态博客 - 知行合一</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="qianmarv" /><meta name="description" content="介绍如何通过 Hexo &#43; Git Page 搭建静态博客。
+" /><meta name="keywords" content="programming, SAP" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="http://blog.qianmarv.xyz/post/setup-blog-with-hexo/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="通过 Hexo &#43; Git Page 搭建静态博客" />
+<meta property="og:description" content="介绍如何通过 Hexo &#43; Git Page 搭建静态博客。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://blog.qianmarv.xyz/post/setup-blog-with-hexo/" />
+<meta property="article:published_time" content="2015-12-30T00:00:00+08:00" />
+<meta property="article:modified_time" content="2015-12-30T00:00:00+08:00" />
+<meta itemprop="name" content="通过 Hexo &#43; Git Page 搭建静态博客">
+<meta itemprop="description" content="介绍如何通过 Hexo &#43; Git Page 搭建静态博客。">
+<meta itemprop="datePublished" content="2015-12-30T00:00:00+08:00" />
+<meta itemprop="dateModified" content="2015-12-30T00:00:00+08:00" />
+<meta itemprop="wordCount" content="677">
+
+
+
+<meta itemprop="keywords" content="blog," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="通过 Hexo &#43; Git Page 搭建静态博客"/>
+<meta name="twitter:description" content="介绍如何通过 Hexo &#43; Git Page 搭建静态博客。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">马文的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">全部</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">马文的博客</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">全部</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">通过 Hexo &#43; Git Page 搭建静态博客</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2015-12-30 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%8A%98%E8%85%BE/"> 折腾 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#环境">环境</a></li>
+    <li><a href="#过程">过程</a></li>
+    <li><a href="#剩下的问题">剩下的问题</a>
+      <ul>
+        <li><a href="#博客从-org-到-hexo-的流程"><!-- raw HTML omitted -->TODO<!-- raw HTML omitted --> 博客从 ORG 到 HEXO 的流程</a></li>
+        <li><a href="#博客的迁移"><!-- raw HTML omitted -->TODO<!-- raw HTML omitted --> 博客的迁移</a></li>
+        <li><a href="#主题的定制化"><!-- raw HTML omitted -->TODO<!-- raw HTML omitted --> 主题的定制化</a></li>
+        <li><a href="#域名设置"><!-- raw HTML omitted -->TODO<!-- raw HTML omitted --> 域名设置</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>介绍如何通过 Hexo + Git Page 搭建静态博客。</p>
+<h2 id="环境">环境</h2>
+<p>本地环境：WIN8
+Cygwin64,
+Git: 2.5.3
+Hexo: Latest
+服务器环境：Github Page</p>
+<h2 id="过程">过程</h2>
+<ol>
+<li>
+<p>安装 nodejs
+<a href="https://nodejs.org/en/">https://nodejs.org/en/</a>
+貌似被墙了，真是悲剧。</p>
+</li>
+<li>
+<p>安装 hexo
+<a href="https://hexo.io/">https://hexo.io/</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">        npm install hexo-cli -g
+        hexo init blog
+        <span class="nb">cd</span> blog
+        npm install
+        hexo server
+</code></pre></td></tr></table>
+</div>
+</div><p>到目前位置，已经可以运行了,浏览器打开：<a href="http://localhost:4000">http://localhost:4000</a></p>
+</li>
+<li>
+<p>设置主题
+<a href="https://hexo.io/themes/">https://hexo.io/themes/</a>
+我选的是这个主题：<a href="https://github.com/tufu9441/maupassant-hexo">maupassant</a>， 可以在<a href="https://www.haomwei.com/">这里</a> 预览。
+如何配置，在主题的 github 页面已经说的很清楚了。
+配置完毕，可以通过 hexo server 来预览效果。</p>
+</li>
+<li>
+<p>注册 github page 的 repository
+官方教程：<a href="https://pages.github.com/">https://pages.github.com/</a>
+这个应该非常简单，只要注意一点注册的代码仓库（repository）必须是<!-- raw HTML omitted -->.github.io，
+比如我的账户是 qianmarv，那么我注册的名字一定要叫 <strong>qianmarv.github.io</strong> ，其他就没问题了</p>
+</li>
+<li>
+<p>如何部署
+<a href="https://hexo.io/docs/deployment.html">官方说明</a> ，简单的说一下的话就是两步：</p>
+<ol>
+<li>
+<p>安装插件<a href="https://github.com/hexojs/hexo-deployer-git">hexo-deployer-git</a></p>
+</li>
+<li>
+<p>修改设定_config.yml</p>
+<blockquote>
+<p>deploy:
+type: git
+repo: <!-- raw HTML omitted -->
+branch: [branch]
+message: [message]</p>
+</blockquote>
+<p>可能存在的问题，如果是用 ssh 的方式应该不会有太大问题，如果是用 https 的方式，在我这边就发现了一个问题：
+hexo deploy 提交部署提示输入用户名，回车后就卡在那里了，不知道别人会不会也有同样的问题，总之就是密码提示出不来。</p>
+<p>最后通过 git 的 store 方式明文存放用户名和密码来解决，当然这个文件是通过文件权限来控制安全的，如果电脑只是本人使用应该还是安全的。
+具体来说两步：</p>
+<ol>
+<li>执行：git config credential.helper &lsquo;store [options]&rsquo;</li>
+<li>在命令行手动 push 一次，命令行提示用户名和密码没有问题，输入后，用户名和密码就被记录下来了，下次就不需要在输了</li>
+</ol>
+<p>参考：<a href="https://blog.sleeplessbeastie.eu/2012/08/12/git-how-to-avoid-typing-your-password-repeatedly/">Git - How to avoid typing your password repeatedly</a>
+<a href="https://git-scm.com/docs/git-credential-store">Git credential-store</a></p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="剩下的问题">剩下的问题</h2>
+<h3 id="博客从-org-到-hexo-的流程"><!-- raw HTML omitted -->TODO<!-- raw HTML omitted --> 博客从 ORG 到 HEXO 的流程</h3>
+<h3 id="博客的迁移"><!-- raw HTML omitted -->TODO<!-- raw HTML omitted --> 博客的迁移</h3>
+<h3 id="主题的定制化"><!-- raw HTML omitted -->TODO<!-- raw HTML omitted --> 主题的定制化</h3>
+<h3 id="域名设置"><!-- raw HTML omitted -->TODO<!-- raw HTML omitted --> 域名设置</h3>
+<p><a href="http://wiki.jikexueyuan.com/project/github-pages-basics/cname-file.html">http://wiki.jikexueyuan.com/project/github-pages-basics/cname-file.html</a></p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">qianmarv</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2015-12-30
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/blog/">blog</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/orgmode-desktop-notifier/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Setup Desktop Notifier For Org-Mode</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/openui5-starter4/">
+            <span class="next-text nav-default">UI5入门系列之四：更好的入门系列-官方Walkthrough</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="qianmarv/qianmarv/qianmarv.github.io"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:qianmarv@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://www.linkedin.com/in/marvin-qian-11404017" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="https://github.com/qianmarv" class="iconfont icon-github" title="github"></a>
+  <a href="http://blog.qianmarv.xyz/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2015 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>qianmarv</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+<script id="baidu_push">
+  (function(){
+    if (window.location.hostname === 'localhost') return;
+    var bp = document.createElement('script'); bp.async = true;
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+
+
+</body>
+</html>

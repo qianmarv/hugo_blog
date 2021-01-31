@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>UI5入门系列之二： 最佳实践练习（上） - 知行合一</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="qianmarv" /><meta name="description" content="这个最佳实践练习的子系列又会分为若干篇，但是不会完全按照Tutorial里面的章节来分，因为我希望每一篇都是都是一个完整的练习，都能跑出来，而不仅仅是一个片段。
+" /><meta name="keywords" content="programming, SAP" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="http://blog.qianmarv.xyz/post/openui5-starter2-part1/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="UI5入门系列之二： 最佳实践练习（上）" />
+<meta property="og:description" content="这个最佳实践练习的子系列又会分为若干篇，但是不会完全按照Tutorial里面的章节来分，因为我希望每一篇都是都是一个完整的练习，都能跑出来，而不仅仅是一个片段。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://blog.qianmarv.xyz/post/openui5-starter2-part1/" />
+<meta property="article:published_time" content="2015-08-13T00:00:00+08:00" />
+<meta property="article:modified_time" content="2015-08-13T00:00:00+08:00" />
+<meta itemprop="name" content="UI5入门系列之二： 最佳实践练习（上）">
+<meta itemprop="description" content="这个最佳实践练习的子系列又会分为若干篇，但是不会完全按照Tutorial里面的章节来分，因为我希望每一篇都是都是一个完整的练习，都能跑出来，而不仅仅是一个片段。">
+<meta itemprop="datePublished" content="2015-08-13T00:00:00+08:00" />
+<meta itemprop="dateModified" content="2015-08-13T00:00:00+08:00" />
+<meta itemprop="wordCount" content="1440">
+
+
+
+<meta itemprop="keywords" content="SAPUI5," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="UI5入门系列之二： 最佳实践练习（上）"/>
+<meta name="twitter:description" content="这个最佳实践练习的子系列又会分为若干篇，但是不会完全按照Tutorial里面的章节来分，因为我希望每一篇都是都是一个完整的练习，都能跑出来，而不仅仅是一个片段。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">马文的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">全部</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">马文的博客</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">全部</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">UI5入门系列之二： 最佳实践练习（上）</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2015-08-13 </span>
+        <div class="post-category">
+            <a href="/categories/%E7%BC%96%E7%A8%8B/"> 编程 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#首页">首页</a></li>
+    <li><a href="#mvc框架">MVC框架</a></li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>这个最佳实践练习的子系列又会分为若干篇，但是不会完全按照Tutorial里面的章节来分，因为我希望每一篇都是都是一个完整的练习，都能跑出来，而不仅仅是一个片段。</p>
+<p>最后做出来的App是这样的。</p>
+<figure>
+    <img src="/ox-hugo/starter_2_1_1.png"
+         alt="SAP UI5最佳实践练习的最终界面"/> 
+</figure>
+
+<h2 id="首页">首页</h2>
+<p>我们先把首页做出来，还是以之前Hello World的代码框架开始吧。
+首先在 <code>&lt;tomcat&gt;/webapps/</code> 下新建一个目录就叫 <code>ui5bp</code> 吧，创建 <code>index.html</code> ，代码如下：</p>
+<p><code>index.html</code></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&#34;X-UA-Compatible&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;IE=edge&#34;</span> <span class="p">/&gt;</span>
+    <span class="c">&lt;!--&lt;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html;charset=UTF-8&#34;/&gt; --&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>SAPUI5 Best Practice<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">script</span>
+    <span class="na">id</span><span class="o">=</span><span class="s">&#34;sap-ui-bootstrap&#34;</span>
+    <span class="na">src</span><span class="o">=</span><span class="s">&#34;http://localhost:8080/openui5/resources/sap-ui-core.js&#34;</span>
+    <span class="na">data-sap-ui-theme</span><span class="o">=</span><span class="s">&#34;sap_bluecrystal&#34;</span>
+    <span class="na">data-sap-ui-libs</span><span class="o">=</span><span class="s">&#34;sap.m&#34;</span>
+    <span class="na">data-sap-ui-xx-bindingSyntax</span><span class="o">=</span><span class="s">&#34;complex&#34;</span>
+    <span class="na">data-sap-ui-resourceroots</span><span class="o">=</span><span class="s">&#39;{
+</span><span class="s">        &#34;ui5.tutorial.bp&#34;: &#34;./&#34;
+</span><span class="s">    }&#39;</span> <span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;sapUiBody&#34;</span><span class="p">&gt;</span>
+
+    <span class="c">&lt;!-- This is where you place the UI5 button --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;content&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>打开浏览器，输入 <code>http://localhost:8080/ui5bp/</code> 你应该可以看到淡蓝色的背景，除此以外，啥都没有。 <!-- raw HTML omitted -->
+这里要提一下，我们定义了一个命名空间 <code>ui5.tutorial.bp</code> 把这个命名空间注册到根目录。后续我们定义或者引用资源都需要加上这个命名空间前缀。 <!-- raw HTML omitted -->
+打开开发者选项，也没有任何错误，那就成功了，继续下一步。</p>
+<h2 id="mvc框架">MVC框架</h2>
+<p>我们暂时不用Component来做模块化，我们先用最快最简单的方法让程序可以跑出个样子来，然后再慢慢的添加功能。 <!-- raw HTML omitted -->
+所以，我们先直接加入MVC。<!-- raw HTML omitted -->
+简单介绍下，MVC就是模型、视图和控制器的简称，一般的Web开发都会用到这种架构用来把前端的UI和业务逻辑分离。具体先不多介绍，直接做吧。</p>
+<p>我们先大致规划一下，我们的应用是一个主从页面结构，会有一个Master的页面和Detail的页面，我们今天先创建一个Empty页面来替代Detail。
+我们会创建如下文件以及对应的目录：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">  ui5bp/
+  +-- view/
+  |     |
+  |     +-- App.view.js
+  |     +-- App.controller.js
+  |     +-- Empty.view.xml
+  |     +-- Master.controller.js
+  |     +-- Master.view.xml
+  |
+  +-- model/
+  |     |
+  |     +-- mock.json
+  +-- index.html
+</code></pre></td></tr></table>
+</div>
+</div><p>我们最后把App放入到index的content中，把Master和Detail放到App中去，其中包含 <code>.view.</code> 的文件是视图，用来定义UI，包含 <code>.controller.</code> 的文件是控制器，用来处理逻辑。
+为了简化应用，我们暂时不使用在线的数据而是用一个json格式的文件数据作为我们的数据模型。这个文件你可以从这里<a href="./attachment/mock.json">下载</a>。<!-- raw HTML omitted -->
+简单提一下，视图可以用html、xml、js、json这四种文件形式来定义，控制器一般则只能用js。</p>
+<p>好了，那我们来看每一个文件的代码。</p>
+<p><code>view/App.view.js</code></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">jsview</span><span class="p">(</span><span class="s2">&#34;ui5.tutorial.bp.view.App&#34;</span><span class="p">,</span> <span class="p">{</span>
+
+  <span class="nx">getControllerName</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s2">&#34;ui5.tutorial.bp.view.App&#34;</span><span class="p">;</span>
+  <span class="p">},</span>
+
+  <span class="nx">createContent</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">oController</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="c1">// to avoid scroll bars on desktop the root view must be set to block display
+</span><span class="c1"></span>    <span class="k">this</span><span class="p">.</span><span class="nx">setDisplayBlock</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+
+    <span class="c1">// create app
+</span><span class="c1"></span>    <span class="k">this</span><span class="p">.</span><span class="nx">app</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">m</span><span class="p">.</span><span class="nx">SplitApp</span><span class="p">();</span>
+
+    <span class="c1">// load the master page
+</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">master</span> <span class="o">=</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">xmlview</span><span class="p">(</span><span class="s2">&#34;Master&#34;</span><span class="p">,</span> <span class="s2">&#34;ui5.tutorial.bp.view.Master&#34;</span><span class="p">);</span>
+    <span class="nx">master</span><span class="p">.</span><span class="nx">getController</span><span class="p">().</span><span class="nx">nav</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getController</span><span class="p">();</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">addPage</span><span class="p">(</span><span class="nx">master</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+
+    <span class="c1">// load the empty page
+</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">empty</span> <span class="o">=</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">xmlview</span><span class="p">(</span><span class="s2">&#34;Empty&#34;</span><span class="p">,</span> <span class="s2">&#34;ui5.tutorial.bp.view.Empty&#34;</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">addPage</span><span class="p">(</span><span class="nx">empty</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">app</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>view/App.controller.js</code></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s2">&#34;ui5.tutorial.bp.view.App&#34;</span><span class="p">,</span> <span class="p">{</span>
+
+  <span class="cm">/**
+</span><span class="cm">   * Navigates to another page
+</span><span class="cm">   * @param {string} pageId The id of the next page
+</span><span class="cm">   * @param {sap.ui.model.Context} context The data context to be applied to the next page (optional)
+</span><span class="cm">   */</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>view/Master.view.xml</code></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;core:View</span>
+  <span class="na">controllerName=</span><span class="s">&#34;ui5.tutorial.bp.view.Master&#34;</span>
+  <span class="na">xmlns=</span><span class="s">&#34;sap.m&#34;</span>
+  <span class="na">xmlns:core=</span><span class="s">&#34;sap.ui.core&#34;</span> <span class="nt">&gt;</span>
+  <span class="nt">&lt;Page</span>
+    <span class="na">title=</span><span class="s">&#34;Product List&#34;</span> <span class="nt">&gt;</span>
+    <span class="nt">&lt;subHeader&gt;</span>
+      <span class="nt">&lt;Bar&gt;</span>
+        <span class="nt">&lt;contentLeft&gt;</span>
+          <span class="nt">&lt;SearchField</span>
+            <span class="na">search=</span><span class="s">&#34;handleSearch&#34;</span>
+            <span class="na">width=</span><span class="s">&#34;100%&#34;</span> <span class="nt">&gt;</span>
+          <span class="nt">&lt;/SearchField&gt;</span>
+        <span class="nt">&lt;/contentLeft&gt;</span>
+      <span class="nt">&lt;/Bar&gt;</span>
+    <span class="nt">&lt;/subHeader&gt;</span>
+    <span class="nt">&lt;List</span>
+      <span class="na">id=</span><span class="s">&#34;list&#34;</span>
+      <span class="na">items=</span><span class="s">&#34;{/SalesOrderCollection}&#34;</span> <span class="nt">&gt;</span>
+      <span class="nt">&lt;ObjectListItem</span>
+        <span class="na">type=</span><span class="s">&#34;Active&#34;</span>
+        <span class="na">press=</span><span class="s">&#34;handleListItemPress&#34;</span>
+        <span class="na">title=</span><span class="s">&#34;{SoId}&#34;</span>
+        <span class="na">number=</span><span class="s">&#34;{GrossAmount}&#34;</span>
+        <span class="na">numberUnit=</span><span class="s">&#34;{CurrencyCode}&#34;</span> <span class="nt">&gt;</span>
+        <span class="nt">&lt;attributes&gt;</span>
+          <span class="nt">&lt;ObjectAttribute</span> <span class="na">text=</span><span class="s">&#34;{BuyerName}&#34;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/attributes&gt;</span>
+
+      <span class="nt">&lt;/ObjectListItem&gt;</span>
+    <span class="nt">&lt;/List&gt;</span>
+  <span class="nt">&lt;/Page&gt;</span>
+<span class="nt">&lt;/core:View&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>view/Master.controller.js</code></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s2">&#34;ui5.tutorial.bp.view.Master&#34;</span><span class="p">,</span> <span class="p">{</span>
+
+  <span class="nx">handleSearch</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">evt</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="c1">// create model filter
+</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">filters</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="nx">evt</span><span class="p">.</span><span class="nx">getParameter</span><span class="p">(</span><span class="s2">&#34;query&#34;</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">query</span> <span class="o">&amp;&amp;</span> <span class="nx">query</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">filter</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">Filter</span><span class="p">(</span><span class="s2">&#34;SoId&#34;</span><span class="p">,</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">FilterOperator</span><span class="p">.</span><span class="nx">Contains</span><span class="p">,</span> <span class="nx">query</span><span class="p">);</span>
+      <span class="nx">filters</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">filter</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// update list binding
+</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">list</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getView</span><span class="p">().</span><span class="nx">byId</span><span class="p">(</span><span class="s2">&#34;list&#34;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">binding</span> <span class="o">=</span> <span class="nx">list</span><span class="p">.</span><span class="nx">getBinding</span><span class="p">(</span><span class="s2">&#34;items&#34;</span><span class="p">);</span>
+    <span class="nx">binding</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">filters</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>view/Empty.view.xml</code></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;core:View</span>
+  <span class="na">xmlns=</span><span class="s">&#34;sap.m&#34;</span>
+  <span class="na">xmlns:core=</span><span class="s">&#34;sap.ui.core&#34;</span> <span class="nt">&gt;</span>
+  <span class="nt">&lt;Page&gt;</span>
+  <span class="nt">&lt;/Page&gt;</span>
+<span class="nt">&lt;/core:View&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>最后我们需要把这些文件和首页关联起来。
+<code>index.html</code></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&#34;X-UA-Compatible&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;IE=edge&#34;</span> <span class="p">/&gt;</span>
+    <span class="c">&lt;!--&lt;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html;charset=UTF-8&#34;/&gt; --&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>SAPUI5 Best Practice<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">script</span>
+    <span class="na">id</span><span class="o">=</span><span class="s">&#34;sap-ui-bootstrap&#34;</span>
+    <span class="na">src</span><span class="o">=</span><span class="s">&#34;http://localhost:8080/openui5/resources/sap-ui-core.js&#34;</span>
+    <span class="na">data-sap-ui-theme</span><span class="o">=</span><span class="s">&#34;sap_bluecrystal&#34;</span>
+    <span class="na">data-sap-ui-libs</span><span class="o">=</span><span class="s">&#34;sap.m&#34;</span>
+    <span class="na">data-sap-ui-xx-bindingSyntax</span><span class="o">=</span><span class="s">&#34;complex&#34;</span>
+    <span class="na">data-sap-ui-resourceroots</span><span class="o">=</span><span class="s">&#39;{
+</span><span class="s">        &#34;ui5.tutorial.bp&#34;: &#34;./&#34;
+</span><span class="s">    }&#39;</span> <span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="kd">var</span> <span class="nx">oView</span> <span class="o">=</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">view</span><span class="p">({</span>
+        <span class="nx">id</span> <span class="o">:</span> <span class="s2">&#34;app&#34;</span><span class="p">,</span>
+        <span class="nx">viewName</span> <span class="o">:</span> <span class="s2">&#34;ui5.tutorial.bp.view.App&#34;</span><span class="p">,</span>
+        <span class="nx">type</span> <span class="o">:</span> <span class="s2">&#34;JS&#34;</span><span class="p">,</span>
+    <span class="p">});</span>
+    <span class="c1">// Using a local model for offline development
+</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">oModel</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">json</span><span class="p">.</span><span class="nx">JSONModel</span><span class="p">(</span><span class="s2">&#34;model/mock.json&#34;</span><span class="p">);</span>
+    <span class="nx">oView</span><span class="p">.</span><span class="nx">setModel</span><span class="p">(</span><span class="nx">oModel</span><span class="p">);</span>
+
+    <span class="nx">oView</span><span class="p">.</span><span class="nx">placeAt</span><span class="p">(</span><span class="s1">&#39;content&#39;</span><span class="p">);</span>
+    <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;sapUiBody&#34;</span><span class="p">&gt;</span>
+
+    <span class="c">&lt;!-- This is where you place the UI5 button --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;content&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>完工，打开 <code>http://localhost:8080/ui5bp/</code> ，可以看到下图：</p>
+<figure>
+    <img src="./images/starter_2_1_2.png"/> 
+</figure>
+
+<h2 id="总结">总结</h2>
+<ul>
+<li>Master.view.xml: <!-- raw HTML omitted -->
+这个页面大概是我们这次教程中最复杂的一个了，其中用到了这些控件：
+<ul>
+<li>Page</li>
+<li>Bar</li>
+<li>List</li>
+<li>ObjectListItem</li>
+</ul>
+</li>
+<li>Master.controler.js: <!-- raw HTML omitted -->
+目前我们只定义了一个方法 - 搜索。</li>
+<li>Empty.view.xml: <!-- raw HTML omitted -->
+只是一个placeholder，因为Detail页面我们还没有创建，所以是一个空页面。</li>
+<li>App.view.js: <!-- raw HTML omitted -->
+容纳Master和Detail页面的容器。</li>
+<li>App.controller.js <!-- raw HTML omitted -->
+之后会在这里定义Master和Detail页面之间的导航功能</li>
+</ul>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">qianmarv</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2015-08-13
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/sapui5/">SAPUI5</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/openui5-starter2-part2/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">UI5入门系列之二： 最佳实践练习（下）</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/openui5-starter1-part2/">
+            <span class="next-text nav-default">UI5入门系列之一：扫盲与热身（下）</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="qianmarv/qianmarv/qianmarv.github.io"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:qianmarv@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://www.linkedin.com/in/marvin-qian-11404017" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="https://github.com/qianmarv" class="iconfont icon-github" title="github"></a>
+  <a href="http://blog.qianmarv.xyz/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2015 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>qianmarv</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+<script id="baidu_push">
+  (function(){
+    if (window.location.hostname === 'localhost') return;
+    var bp = document.createElement('script'); bp.async = true;
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+
+
+</body>
+</html>

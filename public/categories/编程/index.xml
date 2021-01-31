@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>编程 on 知行合一</title>
+    <link>http://blog.qianmarv.xyz/categories/%E7%BC%96%E7%A8%8B/</link>
+    <description>Recent content in 编程 on 知行合一</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 17 Nov 2015 00:00:00 +0800</lastBuildDate><atom:link href="http://blog.qianmarv.xyz/categories/%E7%BC%96%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>UI5入门系列之四：更好的入门系列-官方Walkthrough</title>
+      <link>http://blog.qianmarv.xyz/post/openui5-starter4/</link>
+      <pubDate>Tue, 17 Nov 2015 00:00:00 +0800</pubDate>
+      
+      <guid>http://blog.qianmarv.xyz/post/openui5-starter4/</guid>
+      <description>&lt;p&gt;在UI5 SDK中的EXPLORER里面有着各种控件的用法，所以在这里也没有必要再来一遍，还是看官方的用法更地道。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>UI5入门系列之三：MVC （下） - 视图与控制器</title>
+      <link>http://blog.qianmarv.xyz/post/openui5-starter3-part2/</link>
+      <pubDate>Tue, 15 Sep 2015 00:00:00 +0800</pubDate>
+      
+      <guid>http://blog.qianmarv.xyz/post/openui5-starter3-part2/</guid>
+      <description>&lt;p&gt;继续来学习UI5的MVC模型吧，这次我们来探讨视图与控制器。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>UI5入门系列之三：MVC （上） - 模型</title>
+      <link>http://blog.qianmarv.xyz/post/openui5-starter3-part1/</link>
+      <pubDate>Fri, 04 Sep 2015 00:00:00 +0800</pubDate>
+      
+      <guid>http://blog.qianmarv.xyz/post/openui5-starter3-part1/</guid>
+      <description>&lt;p&gt;这次我们来一起学习MVC，这个专题分为两个小节，本次主要是总览以及模型，下一次着重会介绍视图以及控制器，因为控制器其实没有太多可以讲的，所以和视图合并在一块。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>UI5入门系列之二： 最佳实践练习（下）</title>
+      <link>http://blog.qianmarv.xyz/post/openui5-starter2-part2/</link>
+      <pubDate>Tue, 25 Aug 2015 00:00:00 +0800</pubDate>
+      
+      <guid>http://blog.qianmarv.xyz/post/openui5-starter2-part2/</guid>
+      <description>&lt;p&gt;上期我们完成了一个简单的主从页面，但是页面是静态的，不能交互，功能也很简单，只有一个销售订单的列表。
+我们今天就一鼓作气把代码全都写完，由于本次的代码量较大，所以只对重点代码部分进行讲解。
+具体每个文件和代码就不一一贴出来了，代码都放在github中，需要的自行&lt;a href=&#34;https://github.com/qianmarv/ui5tutorial/tree/master/ui5bp%5F2&#34;&gt;下载&lt;/a&gt;吧。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>UI5入门系列之二： 最佳实践练习（上）</title>
+      <link>http://blog.qianmarv.xyz/post/openui5-starter2-part1/</link>
+      <pubDate>Thu, 13 Aug 2015 00:00:00 +0800</pubDate>
+      
+      <guid>http://blog.qianmarv.xyz/post/openui5-starter2-part1/</guid>
+      <description>&lt;p&gt;这个最佳实践练习的子系列又会分为若干篇，但是不会完全按照Tutorial里面的章节来分，因为我希望每一篇都是都是一个完整的练习，都能跑出来，而不仅仅是一个片段。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>UI5入门系列之一：扫盲与热身（下）</title>
+      <link>http://blog.qianmarv.xyz/post/openui5-starter1-part2/</link>
+      <pubDate>Sat, 25 Jul 2015 00:00:00 +0800</pubDate>
+      
+      <guid>http://blog.qianmarv.xyz/post/openui5-starter1-part2/</guid>
+      <description>&lt;p&gt;介绍UI5代码结构以及一个重要的库 &lt;code&gt;sap.m&lt;/code&gt; .&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>UI5入门系列之一：扫盲与热身（上）</title>
+      <link>http://blog.qianmarv.xyz/post/openui5-starter1-part1/</link>
+      <pubDate>Thu, 23 Jul 2015 00:00:00 +0800</pubDate>
+      
+      <guid>http://blog.qianmarv.xyz/post/openui5-starter1-part1/</guid>
+      <description>&lt;p&gt;什么是SAP Fiori？
+了解SAP UI5必须要从SAP Fiori开始，两者概念经常被混淆，而两者也确实有着非常紧密的关系。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
