@@ -2,7 +2,7 @@
 title = "Linux英文环境下在Emacs中使用中文输入法"
 date = 2021-01-31
 tags = ["emacs"]
-categories = ["日志"]
+categories = ["折腾"]
 draft = false
 +++
 
